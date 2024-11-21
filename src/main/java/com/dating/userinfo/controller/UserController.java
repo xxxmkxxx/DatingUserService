@@ -4,7 +4,7 @@ import com.dating.userinfo.data.CompressedUserInfoData;
 import com.dating.userinfo.data.ResponseData;
 import com.dating.userinfo.data.UserInfoData;
 import com.dating.userinfo.model.UserInfoModel;
-import com.dating.userinfo.service.UserInfoService;
+import com.dating.userinfo.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +17,10 @@ import java.util.Optional;
 @RequestMapping("/api/v0.0.1/user")
 @AllArgsConstructor
 public class UserController {
-    private UserInfoService userInfoService;
+    private UserService userInfoService;
 
     @GetMapping("/info/compressed")
-    public ResponseEntity<ResponseData<List<CompressedUserInfoData>>> getCompressedInfos(@RequestParam CompressedUserInfoData compressedUserInfoData) {
+    public ResponseEntity<ResponseData<List<CompressedUserInfoData>>> getCompressedInfos(@RequestParam CompressedUserInfoData data) {
         return ResponseEntity.ok(
                 new ResponseData<>(
                         true, null,
@@ -48,9 +48,9 @@ public class UserController {
         return ResponseEntity.ok(new ResponseData<>(true, null, new UserInfoData(model)));
     }
 
-    @PostMapping("/info/compressed")
-    public ResponseEntity<ResponseData<Object>> addCompressedUserInfo() {
-        return ResponseEntity.ok(new ResponseData<>(true, "User information saved successfully!", null));
+    @PostMapping("/{login}")
+    public ResponseEntity<ResponseData<Void>> createUser(@PathVariable String login, @RequestParam CompressedUserInfoData data) {
+        return ResponseEntity.ok(userInfoService.createUser(login, data));
     }
 
 }
