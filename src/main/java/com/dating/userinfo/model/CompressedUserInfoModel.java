@@ -13,7 +13,7 @@ public class CompressedUserInfoModel {
     private int compressedUserInfoId;
 
     @Column(name = "first_name", nullable = false)
-    private String firstName;
+    private String name;
 
     @Column(name = "age", nullable = false)
     private int age;
