@@ -7,7 +7,6 @@ import com.dating.userinfo.data.UserInfoData;
 import com.dating.userinfo.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,4 +33,8 @@ public class UserController {
         return new ResponseEntity<>(userService.createUser(login, data), HttpStatus.CREATED);
     }
 
+    @PutMapping("/info/compressed/{login}")
+    public ResponseEntity<ResponseData<Void>> updateUser(@PathVariable String login, @RequestParam CompressedUserInfoData data) {
+        return ResponseEntity.ok(userService.changeCompressedUserInfo(login, data));
+    }
 }

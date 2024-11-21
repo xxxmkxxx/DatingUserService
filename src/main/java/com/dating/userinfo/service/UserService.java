@@ -51,6 +51,18 @@ public class UserService {
         return new ResponseData<>(false, "No user information found for this login!", null);
     }
 
+    public ResponseData<Void> changeCompressedUserInfo(String login, CompressedUserInfoData data) {
+        if (!userRepository.existsByUserLogin(login)) {
+            return new ResponseData<>(false, "User with such login not found!", null);
+        }
+
+        UserModel user = userRepository.findByUserLogin(login);
+        user.getUserInfo().setCompressedUserInfo(createCompressedUserInfo(data));
+        userRepository.save(user);
+
+        return new ResponseData<>(true, "User information updated successfully!", null);
+    }
+
     public ResponseData<Void> createUser(String login, CompressedUserInfoData data) {
         if (userRepository.existsByUserLogin(login)) {
             return new ResponseData<>(false, "User with this login already exists!", null);
@@ -61,7 +73,7 @@ public class UserService {
         return new ResponseData<>(true, "User added successfully!", null);
     }
 
-    private static UserModel createUserModel(String login, CompressedUserInfoData data) {
+    private static CompressedUserInfoModel createCompressedUserInfo(CompressedUserInfoData data) {
         CompressedUserInfoModel compressedUserInfo = new CompressedUserInfoModel();
         compressedUserInfo.setName(data.getName());
         compressedUserInfo.setSurname(data.getSurname());
@@ -70,8 +82,12 @@ public class UserService {
         compressedUserInfo.setIconPath(data.getIconPath());
         compressedUserInfo.setGender(data.isGender());
 
+        return compressedUserInfo;
+    }
+
+    private static UserModel createUserModel(String login, CompressedUserInfoData data) {
         UserInfoModel userInfo = new UserInfoModel();
-        userInfo.setCompressedUserInfo(compressedUserInfo);
+        userInfo.setCompressedUserInfo(createCompressedUserInfo(data));
 
         UserModel user = new UserModel();
         user.setUserInfo(userInfo);
