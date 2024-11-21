@@ -30,6 +30,9 @@ public class CompressedUserInfoModel {
     @Column(name = "gender", nullable = false)
     private boolean gender;
 
+    @Column(name = "gender")
+    private boolean hide = false;
+
     @OneToOne
     @JoinColumn(name = "user_info_id")
     private UserInfoModel userInfo;

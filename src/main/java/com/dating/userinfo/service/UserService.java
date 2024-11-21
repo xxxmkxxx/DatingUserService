@@ -1,7 +1,9 @@
 package com.dating.userinfo.service;
 
+import com.dating.userinfo.data.CompressedInfoFilterData;
 import com.dating.userinfo.data.CompressedUserInfoData;
 import com.dating.userinfo.data.ResponseData;
+import com.dating.userinfo.data.UserInfoData;
 import com.dating.userinfo.model.CompressedUserInfoModel;
 import com.dating.userinfo.model.UserInfoModel;
 import com.dating.userinfo.model.UserModel;
@@ -12,7 +14,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -21,16 +22,33 @@ public class UserService {
     private CompressedUserInfoRepository compressedUserInfoRepository;
     private UserRepository userRepository;
 
-    public List<CompressedUserInfoModel> getAllCompressedUserInfos() {
-        return compressedUserInfoRepository.findAll();
-    }
+    public ResponseData<List<CompressedUserInfoData>> getCompressedUserInfos(CompressedInfoFilterData filter) {
+        List<CompressedUserInfoModel> result;
 
-    public Optional<UserInfoModel> getUserInfoByLogin(String login) {
-        if (userRepository.existsByUserLogin(login)) {
-            return Optional.of(userRepository.findByUserLogin(login).getUserInfo());
+        if (filter.isAllInfos() && filter.isShowHidden()) {
+            result = compressedUserInfoRepository.findAll();
+        } else {
+            result = compressedUserInfoRepository.findByHideAndGender(false, filter.isGender());
         }
 
-        return Optional.empty();
+        return new ResponseData<>(
+                true, null,
+                result.stream()
+                        .map(CompressedUserInfoData::new)
+                        .toList()
+        );
+    }
+
+    public ResponseData<UserInfoData> getUserInfoByLogin(String login) {
+        if (userRepository.existsByUserLogin(login)) {
+            return new ResponseData<>(
+                    true,
+                    null,
+                    new UserInfoData(userRepository.findByUserLogin(login).getUserInfo())
+            );
+        }
+
+        return new ResponseData<>(false, "No user information found for this login!", null);
     }
 
     public ResponseData<Void> createUser(String login, CompressedUserInfoData data) {
