@@ -17,9 +17,6 @@ public class UserInfoModel {
     @OneToOne(mappedBy = "userInfo")
     private CompressedUserInfoModel compressedUserInfo;
 
-    @Column(name = "surname")
-    private String surname;
-
     @Column(name = "patronomic")
     private String patronymic;
 

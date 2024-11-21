@@ -9,14 +9,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CompressedUserInfoData {
-    private String Name;
+    private String name;
+    private String surname;
     private int age;
     private String iconPath;
     private String briefDescription;
     private boolean gender;
 
     public CompressedUserInfoData(CompressedUserInfoModel model) {
-        this.Name = model.getName();
+        this.name = model.getName();
+        this.surname = model.getSurname();
         this.age = model.getAge();
         this.iconPath = model.getIconPath();
         this.briefDescription = model.getBriefDescription();

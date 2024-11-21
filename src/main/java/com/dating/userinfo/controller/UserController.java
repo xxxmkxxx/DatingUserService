@@ -14,13 +14,13 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(name = "/api/v0.0.1/user")
+@RequestMapping("/api/v0.0.1/user")
 @AllArgsConstructor
 public class UserController {
     private UserInfoService userInfoService;
 
-    @GetMapping(name = "/info/compressed")
-    public ResponseEntity<ResponseData<List<CompressedUserInfoData>>> getCompressedInfos() {
+    @GetMapping("/info/compressed")
+    public ResponseEntity<ResponseData<List<CompressedUserInfoData>>> getCompressedInfos(@RequestParam CompressedUserInfoData compressedUserInfoData) {
         return ResponseEntity.ok(
                 new ResponseData<>(
                         true, null,
@@ -31,7 +31,7 @@ public class UserController {
         );
     }
 
-    @GetMapping(name = "/info/{login}")
+    @GetMapping("/info/{login}")
     public ResponseEntity<ResponseData<UserInfoData>> getUserInfo(@PathVariable String login) {
         Optional<UserInfoModel> userInfoModelOptional = userInfoService.getUserInfoByLogin(login);
 
@@ -48,7 +48,7 @@ public class UserController {
         return ResponseEntity.ok(new ResponseData<>(true, null, new UserInfoData(model)));
     }
 
-    @PostMapping(name = "/info/compressed")
+    @PostMapping("/info/compressed")
     public ResponseEntity<ResponseData<Object>> addCompressedUserInfo() {
         return ResponseEntity.ok(new ResponseData<>(true, "User information saved successfully!", null));
     }

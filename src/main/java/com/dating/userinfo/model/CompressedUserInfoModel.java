@@ -15,6 +15,9 @@ public class CompressedUserInfoModel {
     @Column(name = "first_name", nullable = false)
     private String name;
 
+    @Column(name = "surname", nullable = false)
+    private String surname;
+
     @Column(name = "age", nullable = false)
     private int age;
 
