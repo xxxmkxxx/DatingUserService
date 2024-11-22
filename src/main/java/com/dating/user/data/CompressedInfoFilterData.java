@@ -1,4 +1,4 @@
-package com.dating.userinfo.data;
+package com.dating.user.data;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

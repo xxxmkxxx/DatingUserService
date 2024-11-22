@@ -1,7 +1,7 @@
-package com.dating.userinfo.service;
+package com.dating.user.service;
 
-import com.dating.userinfo.model.InterestModel;
-import com.dating.userinfo.repository.InterestRepository;
+import com.dating.user.model.InterestModel;
+import com.dating.user.repository.InterestRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

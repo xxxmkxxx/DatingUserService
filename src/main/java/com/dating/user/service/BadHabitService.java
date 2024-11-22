@@ -1,7 +1,7 @@
-package com.dating.userinfo.service;
+package com.dating.user.service;
 
-import com.dating.userinfo.model.BadHabitModel;
-import com.dating.userinfo.repository.BadHabitRepository;
+import com.dating.user.model.BadHabitModel;
+import com.dating.user.repository.BadHabitRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

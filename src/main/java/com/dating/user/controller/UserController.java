@@ -1,10 +1,10 @@
-package com.dating.userinfo.controller;
+package com.dating.user.controller;
 
-import com.dating.userinfo.data.CompressedInfoFilterData;
-import com.dating.userinfo.data.CompressedUserInfoData;
-import com.dating.userinfo.data.ResponseData;
-import com.dating.userinfo.data.UserInfoData;
-import com.dating.userinfo.service.UserService;
+import com.dating.user.data.CompressedInfoFilterData;
+import com.dating.user.data.CompressedUserInfoData;
+import com.dating.user.data.ResponseData;
+import com.dating.user.data.UserInfoData;
+import com.dating.user.service.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

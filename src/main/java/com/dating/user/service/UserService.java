@@ -1,15 +1,15 @@
-package com.dating.userinfo.service;
+package com.dating.user.service;
 
-import com.dating.userinfo.data.CompressedInfoFilterData;
-import com.dating.userinfo.data.CompressedUserInfoData;
-import com.dating.userinfo.data.ResponseData;
-import com.dating.userinfo.data.UserInfoData;
-import com.dating.userinfo.model.CompressedUserInfoModel;
-import com.dating.userinfo.model.UserInfoModel;
-import com.dating.userinfo.model.UserModel;
-import com.dating.userinfo.repository.CompressedUserInfoRepository;
-import com.dating.userinfo.repository.UserInfoRepository;
-import com.dating.userinfo.repository.UserRepository;
+import com.dating.user.data.CompressedInfoFilterData;
+import com.dating.user.data.CompressedUserInfoData;
+import com.dating.user.data.ResponseData;
+import com.dating.user.data.UserInfoData;
+import com.dating.user.model.CompressedUserInfoModel;
+import com.dating.user.model.UserInfoModel;
+import com.dating.user.model.UserModel;
+import com.dating.user.repository.CompressedUserInfoRepository;
+import com.dating.user.repository.UserInfoRepository;
+import com.dating.user.repository.UserRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 

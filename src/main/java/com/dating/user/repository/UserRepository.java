@@ -1,6 +1,6 @@
-package com.dating.userinfo.repository;
+package com.dating.user.repository;
 
-import com.dating.userinfo.model.UserModel;
+import com.dating.user.model.UserModel;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

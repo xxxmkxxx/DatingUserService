@@ -1,6 +1,6 @@
-package com.dating.userinfo.data;
+package com.dating.user.data;
 
-import com.dating.userinfo.model.CompressedUserInfoModel;
+import com.dating.user.model.CompressedUserInfoModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

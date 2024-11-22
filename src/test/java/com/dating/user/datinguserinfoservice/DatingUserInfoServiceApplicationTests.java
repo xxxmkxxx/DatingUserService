@@ -1,4 +1,4 @@
-package com.dating.userinfo.datinguserinfoservice;
+package com.dating.user.datinguserinfoservice;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

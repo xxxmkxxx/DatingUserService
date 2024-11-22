@@ -1,4 +1,4 @@
-package com.dating.userinfo.model;
+package com.dating.user.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
@@ -7,12 +7,12 @@ import java.util.Set;
 
 @Data
 @Entity
-@Table(name = "interest")
-public class InterestModel {
+@Table(name = "bad_habit")
+public class BadHabitModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "interest_id")
-    private int interestId;
+    @Column(name = "bad_habit_id")
+    private int badHabitId;
 
     @Column(name = "name", nullable = false)
     private String name;
@@ -20,6 +20,6 @@ public class InterestModel {
     @Column(name = "description")
     private String description;
 
-    @ManyToMany(mappedBy = "interests", fetch = FetchType.LAZY)
+    @ManyToMany(mappedBy = "badHabits", fetch = FetchType.LAZY)
     private Set<UserInfoModel> userInfos;
 }

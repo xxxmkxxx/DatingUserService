@@ -1,4 +1,4 @@
-package com.dating.userinfo.model;
+package com.dating.user.model;
 
 import jakarta.persistence.*;
 import lombok.Data;
