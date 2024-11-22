@@ -57,7 +57,15 @@ public class UserService {
         }
 
         UserModel user = userRepository.findByUserLogin(login);
-        user.getUserInfo().setCompressedUserInfo(createCompressedUserInfo(data));
+        CompressedUserInfoModel compressedUserInfo = user.getUserInfo().getCompressedUserInfo();
+
+        compressedUserInfo.setName(data.getName());
+        compressedUserInfo.setSurname(data.getSurname());
+        compressedUserInfo.setAge(data.getAge());
+        compressedUserInfo.setIconPath(data.getIconPath());
+        compressedUserInfo.setBriefDescription(data.getBriefDescription());
+        compressedUserInfo.setGender(data.isGender());
+
         userRepository.save(user);
 
         return new ResponseData<>(true, "User information updated successfully!", null);
@@ -82,17 +90,20 @@ public class UserService {
         compressedUserInfo.setIconPath(data.getIconPath());
         compressedUserInfo.setGender(data.isGender());
 
-        return compressedUserInfoRepository.save(compressedUserInfo);
+        return compressedUserInfo;
     }
 
     private UserModel createUserModel(String login, CompressedUserInfoData data) {
-        UserInfoModel userInfo = new UserInfoModel();
-        userInfo.setCompressedUserInfo(createCompressedUserInfo(data));
-        userInfo = userInfoRepository.save(userInfo);
-
+        CompressedUserInfoModel compressedUserInfo = compressedUserInfoRepository.save(createCompressedUserInfo(data));
+        UserInfoModel userInfo = userInfoRepository.save(new UserInfoModel());
         UserModel user = new UserModel();
-        user.setUserInfo(userInfo);
         user.setUserLogin(login);
+
+        userInfo.setUser(user);
+        user.setUserInfo(userInfo);
+
+        userInfo.setCompressedUserInfo(compressedUserInfo);
+        compressedUserInfo.setUserInfo(userInfo);
 
         return user;
     }

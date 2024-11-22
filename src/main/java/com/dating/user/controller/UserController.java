@@ -33,7 +33,7 @@ public class UserController {
         return new ResponseEntity<>(userService.createUser(login, data), HttpStatus.CREATED);
     }
 
-    @PutMapping("/info/compressed/{login}")
+    @PostMapping("/info/compressed/{login}")
     public ResponseEntity<ResponseData<Void>> updateUser(@PathVariable String login, @RequestBody CompressedUserInfoData data) {
         return ResponseEntity.ok(userService.changeCompressedUserInfo(login, data));
     }
