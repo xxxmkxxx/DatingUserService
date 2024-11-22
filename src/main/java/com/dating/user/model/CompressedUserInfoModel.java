@@ -30,7 +30,7 @@ public class CompressedUserInfoModel {
     @Column(name = "gender", nullable = false)
     private boolean gender;
 
-    @Column(name = "gender")
+    @Column(name = "hide")
     private boolean hide = false;
 
     @OneToOne
