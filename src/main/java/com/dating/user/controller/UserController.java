@@ -19,7 +19,7 @@ public class UserController {
     private UserService userService;
 
     @GetMapping("/info/compressed")
-    public ResponseEntity<ResponseData<List<CompressedUserInfoData>>> getCompressedInfos(@RequestParam CompressedInfoFilterData data) {
+    public ResponseEntity<ResponseData<List<CompressedUserInfoData>>> getCompressedInfos(@RequestBody CompressedInfoFilterData data) {
         return ResponseEntity.ok(userService.getCompressedUserInfos(data));
     }
 
@@ -29,12 +29,12 @@ public class UserController {
     }
 
     @PostMapping("/{login}")
-    public ResponseEntity<ResponseData<Void>> createUser(@PathVariable String login, @RequestParam CompressedUserInfoData data) {
+    public ResponseEntity<ResponseData<Void>> createUser(@PathVariable String login, @RequestBody CompressedUserInfoData data) {
         return new ResponseEntity<>(userService.createUser(login, data), HttpStatus.CREATED);
     }
 
     @PutMapping("/info/compressed/{login}")
-    public ResponseEntity<ResponseData<Void>> updateUser(@PathVariable String login, @RequestParam CompressedUserInfoData data) {
+    public ResponseEntity<ResponseData<Void>> updateUser(@PathVariable String login, @RequestBody CompressedUserInfoData data) {
         return ResponseEntity.ok(userService.changeCompressedUserInfo(login, data));
     }
 }
