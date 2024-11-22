@@ -73,7 +73,7 @@ public class UserService {
         return new ResponseData<>(true, "User added successfully!", null);
     }
 
-    private static CompressedUserInfoModel createCompressedUserInfo(CompressedUserInfoData data) {
+    private CompressedUserInfoModel createCompressedUserInfo(CompressedUserInfoData data) {
         CompressedUserInfoModel compressedUserInfo = new CompressedUserInfoModel();
         compressedUserInfo.setName(data.getName());
         compressedUserInfo.setSurname(data.getSurname());
@@ -82,12 +82,13 @@ public class UserService {
         compressedUserInfo.setIconPath(data.getIconPath());
         compressedUserInfo.setGender(data.isGender());
 
-        return compressedUserInfo;
+        return compressedUserInfoRepository.save(compressedUserInfo);
     }
 
-    private static UserModel createUserModel(String login, CompressedUserInfoData data) {
+    private UserModel createUserModel(String login, CompressedUserInfoData data) {
         UserInfoModel userInfo = new UserInfoModel();
         userInfo.setCompressedUserInfo(createCompressedUserInfo(data));
+        userInfo = userInfoRepository.save(userInfo);
 
         UserModel user = new UserModel();
         user.setUserInfo(userInfo);
