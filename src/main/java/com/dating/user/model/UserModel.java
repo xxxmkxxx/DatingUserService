@@ -10,11 +10,11 @@ public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
-    private int userId;
+    private int id;
 
-    @Column(name = "user_login", nullable = false)
-    private String userLogin;
+    @Column(name = "login", nullable = false)
+    private String login;
 
     @OneToOne(mappedBy = "user")
-    private UserInfoModel userInfo;
+    private UserInfoModel info;
 }
